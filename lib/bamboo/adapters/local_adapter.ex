@@ -43,6 +43,8 @@ defmodule Bamboo.LocalAdapter do
 
   def handle_config(config), do: config
 
+  def supports_attachments?, do: true
+
   defp open_url_in_browser(url) when is_binary(url) do
     case :os.type() do
       {:unix, :darwin} -> System.cmd("open", [url])
@@ -51,5 +53,6 @@ defmodule Bamboo.LocalAdapter do
       {_, _} -> raise "Your os is not supported."
     end
   end
+
   defp open_url_in_browser(_url), do: raise("Only strings are supported as url")
 end
